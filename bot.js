@@ -19,11 +19,13 @@ client.on('message', msg => {
   if(msg.content === '-time') {
   	let aestTime = new Date().toLocaleString("en-US", {timeZone: "Australia/Brisbane"});
 		aestTime = new Date(aestTime);
-		console.log(`Australia O'clock: ${aestTime.toLocaleString()}`);
 
 		let usaTime = new Date().toLocaleString("en-US", {timeZone: "America/New_York"});
 		usaTime = new Date(usaTime);
-		console.log(`America O'clock: ${usaTime.toLocaleString()}`);
+
+		msg.reply(`
+			Australia O'clock: ${aestTime.toLocaleString()}
+			America O'clock: ${usaTime.toLocaleString()}`);
   }
 });
 
