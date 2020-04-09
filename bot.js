@@ -8,8 +8,22 @@ client.on('ready', () => {
 });
 
 client.on('message', msg => {
-  if (msg.content === 'ping') {
+  if(msg.content === '-ping') {
     msg.reply('pong');
+  }
+  if(msg.content === '-commands') {
+  	msg.reply(`Available commands:
+  		-ping: ping Swagbot (are you there?)
+  		-time: Display time in US and AU`);
+  }
+  if(msg.content === '-time') {
+  	let aestTime = new Date().toLocaleString("en-US", {timeZone: "Australia/Brisbane"});
+		aestTime = new Date(aestTime);
+		console.log(`Australia O'clock: ${aestTime.toLocaleString()}`);
+
+		let usaTime = new Date().toLocaleString("en-US", {timeZone: "America/New_York"});
+		usaTime = new Date(usaTime);
+		console.log(`America O'clock: ${usaTime.toLocaleString()}`);
   }
 });
 
