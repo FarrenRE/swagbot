@@ -13,23 +13,23 @@ client.on('ready', () => {
 client.on('message', msg => {
   switch (msg.content) {
     case '-commands':
-      msg.reply( replyAvailableCommands() );
+      msg.channel.send( replyAvailableCommands() );
       break;
     case '-ping':
       msg.reply('Swagbot reporting.');
       break;
     case '-time':
-      msg.reply( replyTimeZones() );
+      msg.channel.send( replyTimeZones() );
       break;
     case '-greedisgood':
-      msg.reply( ':money_mouth:' );
+      msg.channel.send( ':money_mouth:' );
+      break;
+    case '-rockandstone':
+      msg.channel.send(':pick:');
+      break;
     default:
       break;
   }
-});
-
-client.on('presenceUpdate', msg => {
-  msg.reply('hello presenceUpdate');
 });
 
 
