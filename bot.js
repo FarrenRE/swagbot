@@ -5,6 +5,7 @@ const client = new Discord.Client();
 
 client.on('ready', () => {
   console.log(`Logged in as ${client.user.tag}!`);
+  msg.channel.send( sendAliveMessage() );
 });
 
 /* Listeners */
@@ -57,6 +58,11 @@ function replyTimeZones() {
   str += `America O'clock:      ${usaTime.toLocaleString()}`;
 
   return str;
+}
+
+function sendAliveMessage() {
+  let msg = `I... LIVE!!!`;
+  return msg;
 }
 
 client.login(process.env.DISCORD_TOKEN);
