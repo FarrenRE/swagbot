@@ -8,25 +8,44 @@ client.on('ready', () => {
 });
 
 client.on('message', msg => {
-  if(msg.content === '-ping') {
-    msg.reply('pong');
-  }
-  if(msg.content === '-commands') {
-  	msg.reply(`Available commands:
-  		-ping: ping Swagbot (are you there?)
-  		-time: Display time in US and AU`);
-  }
-  if(msg.content === '-time') {
-  	let aestTime = new Date().toLocaleString("en-US", {timeZone: "Australia/Brisbane"});
-		aestTime = new Date(aestTime);
 
-		let usaTime = new Date().toLocaleString("en-US", {timeZone: "America/New_York"});
-		usaTime = new Date(usaTime);
-
-		msg.reply(`
-			Australia O'clock: ${aestTime.toLocaleString()}
-			America O'clock: ${usaTime.toLocaleString()}`);
+  switch (msg.content) {
+    case '-commands':
+      msg.reply( replyAvailableCommands() );
+      break;
+    case '-ping':
+      msg.reply('Swagbot reporting.');
+      break;
+    case '-time':
+      msg.reply( replyTimeZones() );
+      break;
+    default:
+      break;
   }
 });
+
+function replyAvailableCommands() {
+  return `Available commands:
+    -commands : Display available commands (you knew this one already didn't you?)
+    -ping : Check Swagbot availability
+    -time : Display time in US and AU
+    
+    there are more, secret, commands....`;
+}
+
+function replyTimeZones() {
+  let str; 
+
+  let aestTime = new Date().toLocaleString("en-US", {timeZone: "Australia/Brisbane"});
+  aestTime = new Date(aestTime);
+
+  let usaTime = new Date().toLocaleString("en-US", {timeZone: "America/New_York"});
+  usaTime = new Date(usaTime);
+
+  str += `Australia O'clock: ${aestTime.toLocaleString()}\n`
+  str += `America O'clock: ${usaTime.toLocaleString()}`;
+
+  return str;
+}
 
 client.login(process.env.DISCORD_TOKEN);
