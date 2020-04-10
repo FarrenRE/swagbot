@@ -7,8 +7,10 @@ client.on('ready', () => {
   console.log(`Logged in as ${client.user.tag}!`);
 });
 
-client.on('message', msg => {
+/* Listeners */
 
+// Message event listener
+client.on('message', msg => {
   switch (msg.content) {
     case '-commands':
       msg.reply( replyAvailableCommands() );
@@ -19,22 +21,31 @@ client.on('message', msg => {
     case '-time':
       msg.reply( replyTimeZones() );
       break;
+    case '-greedisgood':
+      msg.reply( ':money_mouth:' );
     default:
       break;
   }
 });
 
+client.on('presenceUpdate', msg => {
+  msg.reply('hello presenceUpdate');
+});
+
+
+/* Functions */
+
 function replyAvailableCommands() {
   return `Available commands:
-    -commands : Display available commands (you knew this one already didn't you?)
-    -ping : Check Swagbot availability
-    -time : Display time in US and AU
+    **-commands** : Display available commands (you knew this one already didn't you?)
+    **-ping** : Check Swagbot availability
+    **-time** : Display time in US and AU
     
     there are more, secret, commands....`;
 }
 
 function replyTimeZones() {
-  let str; 
+  let str = '';
 
   let aestTime = new Date().toLocaleString("en-US", {timeZone: "Australia/Brisbane"});
   aestTime = new Date(aestTime);
@@ -42,8 +53,8 @@ function replyTimeZones() {
   let usaTime = new Date().toLocaleString("en-US", {timeZone: "America/New_York"});
   usaTime = new Date(usaTime);
 
-  str += `Australia O'clock: ${aestTime.toLocaleString()}\n`
-  str += `America O'clock: ${usaTime.toLocaleString()}`;
+  str += `Australia O'clock:    ${aestTime.toLocaleString()}\n`
+  str += `America O'clock:      ${usaTime.toLocaleString()}`;
 
   return str;
 }
