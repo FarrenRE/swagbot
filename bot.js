@@ -28,6 +28,9 @@ client.on('message', msg => {
     case '-rockandstone':
       msg.channel.send(':pick:');
       break;
+    case '-woo':
+      msg.channel.send('*WWWEEEEEEEEEW!!*');
+      break;
     default:
       break;
   }
