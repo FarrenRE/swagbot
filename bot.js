@@ -12,7 +12,8 @@ client.on('ready', () => {
 
 // Message event listener
 client.on('message', msg => {
-  switch (msg.content) {
+  const msgContent = msg.content.toLowerCase();
+  switch (msgContent) {
     case '-commands':
       msg.channel.send( replyAvailableCommands() );
       break;
